@@ -46,6 +46,36 @@ function addToCart(product) {
     renderCart();
 }
 
+function increaseQuantity(id) {
+    const cartProduct = cart.find((item) => item.id === id);
+
+    if (cartProduct) {
+        cartProduct.quantity += 1;
+    }
+
+    renderCart();
+}
+
+function decreaseQuantity(id) {
+    const cartProduct = cart.find((item) => item.id === id);
+
+    if (cartProduct && cartProduct.quantity > 1) {
+        cartProduct.quantity -= 1;
+    }
+
+    renderCart();
+}
+
+function removeFromCart(id) {
+    const productIndex = cart.findIndex((item) => item.id === id);
+
+    if (productIndex !== -1) {
+        cart.splice(productIndex, 1);
+    }
+
+    renderCart();
+}
+
 function renderCart() {
     cartItems.textContent = '';
 
@@ -55,13 +85,48 @@ function renderCart() {
         const cartItem = document.createElement('div');
 
         const name = document.createElement('p');
-        name.textContent = `${item.name} — ${item.quantity} шт.`;
+        name.textContent = item.name;
+
+        const quantity = document.createElement('p');
+        quantity.textContent = `Количество: ${item.quantity}`;
 
         const price = document.createElement('p');
         const itemTotal = item.price * item.quantity;
         price.textContent = `${itemTotal} ₽`;
 
-        cartItem.append(name, price);
+        const decreaseButton = document.createElement('button');
+        decreaseButton.textContent = '−';
+        decreaseButton.type = 'button';
+
+        decreaseButton.addEventListener('click', () => {
+            decreaseQuantity(item.id);
+        });
+
+        const increaseButton = document.createElement('button');
+        increaseButton.textContent = '+';
+        increaseButton.type = 'button';
+
+        increaseButton.addEventListener('click', () => {
+            increaseQuantity(item.id);
+        });
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Удалить';
+        removeButton.type = 'button';
+
+        removeButton.addEventListener('click', () => {
+            removeFromCart(item.id);
+        });
+
+        cartItem.append(
+            name,
+            quantity,
+            price,
+            decreaseButton,
+            increaseButton,
+            removeButton
+        );
+
         cartItems.append(cartItem);
 
         total += itemTotal;
