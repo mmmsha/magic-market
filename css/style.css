@@ -145,6 +145,13 @@ footer {
     margin-right: 5px;
 }
 
+#order-message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #39234d;
+}
+
 @media (max-width: 600px) {
     #product-list {
         grid-template-columns: 1fr;

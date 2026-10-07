@@ -2,6 +2,11 @@ const productList = document.getElementById('product-list');
 const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
 
+const checkoutButton = document.getElementById('checkout-button');
+const orderSection = document.getElementById('order-section');
+const orderForm = document.getElementById('order-form');
+const orderMessage = document.getElementById('order-message');
+
 const savedCart = localStorage.getItem('cart');
 let cart = savedCart ? JSON.parse(savedCart) : [];
 
@@ -143,5 +148,15 @@ function renderCart() {
 
     cartTotal.textContent = total;
 }
+
+checkoutButton.addEventListener('click', () => {
+    orderSection.hidden = false;
+});
+
+orderForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    orderMessage.hidden = false;
+});
 
 renderCart();
