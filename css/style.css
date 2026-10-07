@@ -122,3 +122,40 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+@media (max-width: 900px) {
+    #product-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    main {
+        width: 94%;
+    }
+}
+
+@media (max-width: 600px) {
+    #product-list {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    main {
+        width: 92%;
+        margin: 20px auto;
+    }
+
+    #product-list img {
+        height: 200px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #order-form {
+        max-width: 100%;
+    }
+}
