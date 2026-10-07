@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Magic Market</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/data.js" defer></script>
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Magic Market</h1>
+        <p>Магазин магических товаров</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Каталог товаров</h2>
+
+            <div id="product-list"></div>
+        </section>
+
+        <section>
+            <h2>Корзина</h2>
+
+            <div id="cart-items"></div>
+
+            <p>
+                Итого:
+                <span id="cart-total">0</span> ₽
+            </p>
+
+            <button id="checkout-button" type="button">
+                Оформить заказ
+            </button>
+        </section>
+
+        <section id="order-section" hidden>
+            <h2>Оформление заказа</h2>
+
+            <form id="order-form">
+
+                <label for="first-name">Имя</label>
+                <input
+                    id="first-name"
+                    name="firstName"
+                    type="text"
+                    required
+                >
+
+                <label for="last-name">Фамилия</label>
+                <input
+                    id="last-name"
+                    name="lastName"
+                    type="text"
+                    required
+                >
+
+                <label for="address">Адрес доставки</label>
+                <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    required
+                >
+
+                <label for="phone">Контактный номер телефона</label>
+                <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    required
+                >
+
+                <button type="submit">
+                    Создать заказ
+                </button>
+
+            </form>
+
+            <p id="order-message" hidden>
+                Заказ создан!
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Magic Market</p>
+    </footer>
+
+</body>
+</html>
