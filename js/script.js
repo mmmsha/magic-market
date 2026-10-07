@@ -2,7 +2,8 @@ const productList = document.getElementById('product-list');
 const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
 
-const cart = [];
+const savedCart = localStorage.getItem('cart');
+let cart = savedCart ? JSON.parse(savedCart) : [];
 
 products.forEach((product) => {
     const card = document.createElement('article');
@@ -29,6 +30,10 @@ products.forEach((product) => {
     productList.append(card);
 });
 
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 function addToCart(product) {
     const cartProduct = cart.find((item) => item.id === product.id);
 
@@ -43,6 +48,7 @@ function addToCart(product) {
         });
     }
 
+    saveCart();
     renderCart();
 }
 
@@ -53,6 +59,7 @@ function increaseQuantity(id) {
         cartProduct.quantity += 1;
     }
 
+    saveCart();
     renderCart();
 }
 
@@ -63,6 +70,7 @@ function decreaseQuantity(id) {
         cartProduct.quantity -= 1;
     }
 
+    saveCart();
     renderCart();
 }
 
@@ -73,6 +81,7 @@ function removeFromCart(id) {
         cart.splice(productIndex, 1);
     }
 
+    saveCart();
     renderCart();
 }
 
@@ -134,3 +143,5 @@ function renderCart() {
 
     cartTotal.textContent = total;
 }
+
+renderCart();
